@@ -10,7 +10,7 @@ use App\Http\Controllers\GreetingController;
 </head>
 <body>
 	<div style="display: block">
-		<h1>Conversor de $alário (de mês para horas)</h1>
+		<h1>Descubra quando você ganha em horas</h1>
 		<p>Estamos supondo que você trabalha 44 horas semanais</p>
 		<form style="display: grid" action={{ action([GreetingController::class, 'salaryConverter']) }}>
 			<input
