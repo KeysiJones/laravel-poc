@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use PHPUnit\Util\Json;
-use App\Http\Controllers\GreetingController;
+use App\Http\Controllers\PessoaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +15,20 @@ use App\Http\Controllers\GreetingController;
 */
 
 Route::get('/', function () {
-    return view('collectData');
+    return view('welcome');
+})->middleware(['auth'])->name('welcome');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::get('/pessoas/cadastrar', function () {
+    return view('pessoas.cadastrar');
 });
 
-Route::get('/converter', [GreetingController::class, "salaryConverter"]);
+Route::post('/pessoas/cadastrar', [PessoaController::class, 'cadastrar']);
+
+Route::get('/pessoas/listar', [PessoaController::class, 'listar'])
+->middleware(['auth'])->name('listar-pessoas');
+
+require __DIR__.'/auth.php';
